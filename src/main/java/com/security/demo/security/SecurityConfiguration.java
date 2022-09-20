@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static com.security.demo.security.ApplicationUserRole.*;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -41,12 +42,12 @@ public class SecurityConfiguration {
         UserDetails FaresUser = User.builder()
                 .username("fares")
                 .password(passwordEncoder.encode("azerty12345"))
-                .roles("STUDENT")
+                .roles(STUDENT.name())
                 .build();
         UserDetails AdminUser = User.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("azerty12345"))
-                .roles("ADMIN")
+                .roles(ADMIN.name())
                 .build();
         return new InMemoryUserDetailsManager(FaresUser,AdminUser);
     }
